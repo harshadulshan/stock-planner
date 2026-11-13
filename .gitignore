@@ -1,0 +1,6 @@
+# downloaded M5 data and model runs (fetched again on first use, checksum in stockplan/m5.py)
+data_cache/
+__pycache__/
+*.pyc
+.venv/
+.DS_Store

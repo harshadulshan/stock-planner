@@ -1,0 +1,1244 @@
+{
+ "machine": "2 cores",
+ "checkpoints": [
+  100,
+  200,
+  300,
+  400,
+  600
+ ],
+ "validation": {
+  "wrmsse_by_trees": {
+   "100": 0.6846,
+   "200": 0.66678,
+   "300": 0.67464,
+   "400": 0.68323,
+   "600": 0.69389
+  },
+  "trees": 200,
+  "snaive": 0.8697
+ },
+ "accuracy": {
+  "engine": 0.55955,
+  "levels": {
+   "Level1": 0.22157,
+   "Level2": 0.33502,
+   "Level3": 0.45824,
+   "Level4": 0.28816,
+   "Level5": 0.4262,
+   "Level6": 0.41493,
+   "Level7": 0.52938,
+   "Level8": 0.5277,
+   "Level9": 0.62798,
+   "Level10": 1.01773,
+   "Level11": 0.96161,
+   "Level12": 0.90606
+  },
+  "benchmarks": {
+   "Naive": 1.75201,
+   "sNaive": 0.847017,
+   "SES": 0.96914,
+   "MA": 0.956015,
+   "CRO": 0.956635,
+   "optCRO": 0.957907,
+   "SBA": 0.957164,
+   "TSB": 0.961436,
+   "ADIDA": 0.954572,
+   "iMAPA": 0.959512,
+   "ES_td": 0.720428,
+   "ES_bu": 0.670981,
+   "ESX": 0.679066,
+   "ARIMA_td": 0.795654,
+   "ARIMA_bu": 0.907535,
+   "ARIMAX": 0.690613,
+   "MLP": 0.976832,
+   "RF": 1.009529,
+   "gMLP": 0.961445,
+   "gRF": 1.065135,
+   "Com_b": 0.722723,
+   "Com_t": 0.745136,
+   "Com_tb": 0.681614,
+   "Com_lg": 0.953306
+  },
+  "best_benchmark": "ES_bu",
+  "top": [
+   [
+    "YJ_STU",
+    0.520438
+   ],
+   [
+    "Matthias",
+    0.528165
+   ],
+   [
+    "mf",
+    0.535717
+   ],
+   [
+    "monsaraida",
+    0.535832
+   ],
+   [
+    "Alan Lahoud",
+    0.536046
+   ],
+   [
+    "wyzJack_STU",
+    0.54433
+   ],
+   [
+    "RandomLearner",
+    0.546435
+   ],
+   [
+    "SHJ",
+    0.546886
+   ],
+   [
+    "gest 2",
+    0.547053
+   ],
+   [
+    "DenisKokosinskiy_STU",
+    0.547471
+   ],
+   [
+    "XueWang",
+    0.548906
+   ],
+   [
+    "yq_STU",
+    0.549797
+   ],
+   [
+    "PoHaoChou",
+    0.550408
+   ],
+   [
+    "Tsuru",
+    0.55157
+   ],
+   [
+    "bk_18",
+    0.551755
+   ],
+   [
+    "N60610",
+    0.551825
+   ],
+   [
+    "MonashSL_STU",
+    0.552413
+   ],
+   [
+    "leoclement",
+    0.554908
+   ],
+   [
+    "minghui_Tju",
+    0.5562
+   ],
+   [
+    "zfc613",
+    0.556906
+   ],
+   [
+    "Nodalpoints",
+    0.557247
+   ],
+   [
+    "CPUkiller",
+    0.557572
+   ],
+   [
+    "dont overfit",
+    0.557572
+   ],
+   [
+    "Dan Hargreaves",
+    0.557785
+   ],
+   [
+    "M0T0_STU",
+    0.558956
+   ],
+   [
+    "Genryu",
+    0.558998
+   ],
+   [
+    "Moscow Five",
+    0.560479
+   ],
+   [
+    "Daniela A",
+    0.561306
+   ],
+   [
+    "shuheioka",
+    0.561519
+   ],
+   [
+    "sk 2",
+    0.56323
+   ],
+   [
+    "nagao",
+    0.563649
+   ],
+   [
+    "AjayNagar",
+    0.56438
+   ],
+   [
+    "cjwh",
+    0.566492
+   ],
+   [
+    "CWD75",
+    0.566608
+   ],
+   [
+    "Groot",
+    0.567467
+   ],
+   [
+    "Astral",
+    0.56785
+   ],
+   [
+    "Logistic",
+    0.568005
+   ],
+   [
+    "jdsc_perceiving_team",
+    0.568309
+   ],
+   [
+    "Abzal",
+    0.569831
+   ],
+   [
+    "Pianus",
+    0.569886
+   ],
+   [
+    "NAU",
+    0.570131
+   ],
+   [
+    "shirokane_friends",
+    0.570179
+   ],
+   [
+    "Alexnet",
+    0.570926
+   ],
+   [
+    "Griffin_Series",
+    0.573522
+   ],
+   [
+    "Hiromitsu Kigure",
+    0.573782
+   ],
+   [
+    "YK",
+    0.574573
+   ],
+   [
+    "PASSTA",
+    0.574617
+   ],
+   [
+    "golubyatniks",
+    0.575915
+   ],
+   [
+    "belkasanek",
+    0.57595
+   ],
+   [
+    "Random_prediction",
+    0.575994
+   ]
+  ],
+  "rank_text": "would place 27 of 5,558 teams",
+  "teams": 5558,
+  "check_snaive": 0.847017
+ },
+ "uncertainty": {
+  "engine": 0.27851,
+  "by_quantile": {
+   "0.005": 0.01176,
+   "0.025": 0.05339,
+   "0.165": 0.28293,
+   "0.25": 0.38924,
+   "0.5": 0.57336,
+   "0.75": 0.5378,
+   "0.835": 0.45567,
+   "0.975": 0.14981,
+   "0.995": 0.05268
+  },
+  "benchmarks": {
+   "Naive": 0.493326,
+   "sNaive": 0.361008,
+   "SES": 0.305865,
+   "Kernel": 0.312187,
+   "ETS": 0.300314,
+   "ARIMA": 0.302387
+  },
+  "top_l12": [
+   [
+    "Everyday Low SPLices",
+    0.265035
+   ],
+   [
+    "GoodsForecast - Nick Mamonov",
+    0.280429
+   ],
+   [
+    "Ouranos",
+    0.279912
+   ],
+   [
+    "Marisaka Mozz",
+    0.279228
+   ],
+   [
+    "IHiroaki",
+    0.28579
+   ],
+   [
+    "WalSmart",
+    0.263798
+   ],
+   [
+    "Ka Ho_STU",
+    0.285251
+   ],
+   [
+    "Kazu",
+    0.269883
+   ],
+   [
+    "Praveen Adepu",
+    0.276616
+   ],
+   [
+    "golubyatniks",
+    0.280448
+   ],
+   [
+    "Andrij",
+    0.280458
+   ],
+   [
+    "Tobias Tesch_STU",
+    0.289281
+   ],
+   [
+    "Wal Dash Mart",
+    0.264588
+   ],
+   [
+    "A Certain Uncertainty",
+    0.287469
+   ],
+   [
+    "Astral",
+    0.292363
+   ],
+   [
+    "toshi_k",
+    0.281562
+   ],
+   [
+    "Random_prediction",
+    0.286831
+   ],
+   [
+    "EXTASY",
+    0.275729
+   ],
+   [
+    "AkiraIshikawa",
+    0.315301
+   ],
+   [
+    "Peter CXL",
+    0.286327
+   ],
+   [
+    "Takuma Omiya",
+    0.323965
+   ],
+   [
+    "KBU",
+    0.323965
+   ],
+   [
+    "lkdy",
+    0.323965
+   ],
+   [
+    "Jacques Peeters",
+    0.266596
+   ],
+   [
+    "Rob Mulla",
+    0.306576
+   ],
+   [
+    "Costas Voglis",
+    0.350096
+   ],
+   [
+    "RandomObserver",
+    0.286437
+   ],
+   [
+    "Appian",
+    0.281959
+   ],
+   [
+    "rapidsai",
+    0.305132
+   ],
+   [
+    "lz1997",
+    0.288345
+   ],
+   [
+    "Bo Peng",
+    0.286212
+   ],
+   [
+    "shirokane_friends_from_acc",
+    0.369161
+   ],
+   [
+    "MPWARE",
+    0.310498
+   ],
+   [
+    "Alberto Benayas",
+    0.281353
+   ],
+   [
+    "lpyczn",
+    0.277885
+   ],
+   [
+    "PreciseMen",
+    0.280667
+   ],
+   [
+    "Volo",
+    0.286429
+   ],
+   [
+    "Football_Winer",
+    0.281616
+   ],
+   [
+    "sibmike_STU",
+    0.377986
+   ],
+   [
+    "Chris X",
+    0.280769
+   ],
+   [
+    "KrisztianSz_STU",
+    0.288733
+   ],
+   [
+    "Onl",
+    0.275686
+   ],
+   [
+    "shuheioka",
+    0.381903
+   ],
+   [
+    "Dennis Igshv",
+    0.287177
+   ],
+   [
+    "slaweks",
+    0.268798
+   ],
+   [
+    "valeska",
+    0.284663
+   ],
+   [
+    "M0T0",
+    0.352598
+   ],
+   [
+    "ArshjotKhehra",
+    0.27705
+   ],
+   [
+    "Konrad Banachewicz",
+    0.291902
+   ],
+   [
+    "Lindada",
+    0.272135
+   ]
+  ],
+  "coverage": {
+   "50%": 0.7883,
+   "67%": 0.8641,
+   "95%": 0.9728,
+   "99%": 0.9896
+  },
+  "dispersion": {
+   "windows": [
+    1,
+    7,
+    14,
+    28
+   ],
+   "bands": [
+    0.0,
+    0.2,
+    0.5,
+    1.0,
+    3.0,
+    10.0,
+    null
+   ],
+   "table": [
+    [
+     0.31978,
+     0.31978,
+     0.31978,
+     0.31978,
+     0.31978,
+     0.31978
+    ],
+    [
+     0.14434,
+     0.14434,
+     0.14434,
+     0.14434,
+     0.14434,
+     0.14434
+    ],
+    [
+     0.11752,
+     0.11752,
+     0.11752,
+     0.11752,
+     0.11752,
+     0.11752
+    ],
+    [
+     0.0969,
+     0.0969,
+     0.0969,
+     0.0969,
+     0.0969,
+     0.0969
+    ]
+   ],
+   "overall": [
+    0.31978,
+    0.14434,
+    0.11752,
+    0.0969
+   ]
+  },
+  "note": "Level 12 (each product in each store) of the M5 uncertainty competition: 9 quantiles a day, scaled pinball loss with the official weights. The other levels need ranges for sums of products, which the shop app does not use. Coverage of the central ranges on the final test: 50% range holds 79% of the days, 67% range holds 86% of the days, 95% range holds 97% of the days, 99% range holds 99% of the days."
+ },
+ "latest_weeks": {
+  "period": "public leaderboard period (days 1914-1941): forecasts made on day 1913, ranges and the latest weeks' error from forecasts made on day 1885",
+  "fills": [
+   0.9,
+   0.95,
+   0.97
+  ],
+  "weights": {
+   "0.0": {
+    "curve": [
+     {
+      "lam": 0.3,
+      "value_fill": 0.85544,
+      "fill_rate": 0.86225,
+      "stock_days": 5.204,
+      "item_fill_median": 0.9126,
+      "stockout_share": 0.5989
+     },
+     {
+      "lam": 0.15,
+      "value_fill": 0.91488,
+      "fill_rate": 0.91693,
+      "stock_days": 7.338,
+      "item_fill_median": 1.0,
+      "stockout_share": 0.3778
+     },
+     {
+      "lam": 0.08,
+      "value_fill": 0.94089,
+      "fill_rate": 0.94096,
+      "stock_days": 9.092,
+      "item_fill_median": 1.0,
+      "stockout_share": 0.2508
+     },
+     {
+      "lam": 0.04,
+      "value_fill": 0.95628,
+      "fill_rate": 0.95573,
+      "stock_days": 10.882,
+      "item_fill_median": 1.0,
+      "stockout_share": 0.1682
+     },
+     {
+      "lam": 0.02,
+      "value_fill": 0.96524,
+      "fill_rate": 0.96459,
+      "stock_days": 12.562,
+      "item_fill_median": 1.0,
+      "stockout_share": 0.1158
+     }
+    ],
+    "stock_days_at": [
+     6.804,
+     10.152,
+     null
+    ]
+   },
+   "0.25": {
+    "curve": [
+     {
+      "lam": 0.3,
+      "value_fill": 0.86972,
+      "fill_rate": 0.87549,
+      "stock_days": 5.345,
+      "item_fill_median": 0.9167,
+      "stockout_share": 0.6011
+     },
+     {
+      "lam": 0.15,
+      "value_fill": 0.9262,
+      "fill_rate": 0.92737,
+      "stock_days": 7.542,
+      "item_fill_median": 1.0,
+      "stockout_share": 0.3672
+     },
+     {
+      "lam": 0.08,
+      "value_fill": 0.94974,
+      "fill_rate": 0.94923,
+      "stock_days": 9.342,
+      "item_fill_median": 1.0,
+      "stockout_share": 0.2368
+     },
+     {
+      "lam": 0.04,
+      "value_fill": 0.96304,
+      "fill_rate": 0.96216,
+      "stock_days": 11.179,
+      "item_fill_median": 1.0,
+      "stockout_share": 0.1526
+     },
+     {
+      "lam": 0.02,
+      "value_fill": 0.97054,
+      "fill_rate": 0.96964,
+      "stock_days": 12.903,
+      "item_fill_median": 1.0,
+      "stockout_share": 0.104
+     }
+    ],
+    "stock_days_at": [
+     6.523,
+     9.378,
+     12.779
+    ]
+   },
+   "0.5": {
+    "curve": [
+     {
+      "lam": 0.3,
+      "value_fill": 0.87584,
+      "fill_rate": 0.8809,
+      "stock_days": 5.507,
+      "item_fill_median": 0.9167,
+      "stockout_share": 0.6064
+     },
+     {
+      "lam": 0.15,
+      "value_fill": 0.92978,
+      "fill_rate": 0.93044,
+      "stock_days": 7.755,
+      "item_fill_median": 1.0,
+      "stockout_share": 0.3674
+     },
+     {
+      "lam": 0.08,
+      "value_fill": 0.9517,
+      "fill_rate": 0.95099,
+      "stock_days": 9.596,
+      "item_fill_median": 1.0,
+      "stockout_share": 0.2352
+     },
+     {
+      "lam": 0.04,
+      "value_fill": 0.96433,
+      "fill_rate": 0.96319,
+      "stock_days": 11.474,
+      "item_fill_median": 1.0,
+      "stockout_share": 0.1505
+     },
+     {
+      "lam": 0.02,
+      "value_fill": 0.97134,
+      "fill_rate": 0.97025,
+      "stock_days": 13.232,
+      "item_fill_median": 1.0,
+      "stockout_share": 0.105
+     }
+    ],
+    "stock_days_at": [
+     6.514,
+     9.453,
+     12.896
+    ]
+   },
+   "0.75": {
+    "curve": [
+     {
+      "lam": 0.3,
+      "value_fill": 0.87651,
+      "fill_rate": 0.88118,
+      "stock_days": 5.686,
+      "item_fill_median": 0.913,
+      "stockout_share": 0.6097
+     },
+     {
+      "lam": 0.15,
+      "value_fill": 0.929,
+      "fill_rate": 0.92947,
+      "stock_days": 7.976,
+      "item_fill_median": 1.0,
+      "stockout_share": 0.3758
+     },
+     {
+      "lam": 0.08,
+      "value_fill": 0.95075,
+      "fill_rate": 0.94977,
+      "stock_days": 9.85,
+      "item_fill_median": 1.0,
+      "stockout_share": 0.2446
+     },
+     {
+      "lam": 0.04,
+      "value_fill": 0.9633,
+      "fill_rate": 0.96195,
+      "stock_days": 11.759,
+      "item_fill_median": 1.0,
+      "stockout_share": 0.1604
+     },
+     {
+      "lam": 0.02,
+      "value_fill": 0.97051,
+      "fill_rate": 0.96917,
+      "stock_days": 13.552,
+      "item_fill_median": 1.0,
+      "stockout_share": 0.1119
+     }
+    ],
+    "stock_days_at": [
+     6.711,
+     9.785,
+     13.425
+    ]
+   },
+   "1.0": {
+    "curve": [
+     {
+      "lam": 0.3,
+      "value_fill": 0.87392,
+      "fill_rate": 0.87837,
+      "stock_days": 5.873,
+      "item_fill_median": 0.9091,
+      "stockout_share": 0.6137
+     },
+     {
+      "lam": 0.15,
+      "value_fill": 0.9262,
+      "fill_rate": 0.92646,
+      "stock_days": 8.204,
+      "item_fill_median": 1.0,
+      "stockout_share": 0.3902
+     },
+     {
+      "lam": 0.08,
+      "value_fill": 0.94827,
+      "fill_rate": 0.94707,
+      "stock_days": 10.104,
+      "item_fill_median": 1.0,
+      "stockout_share": 0.2591
+     },
+     {
+      "lam": 0.04,
+      "value_fill": 0.96132,
+      "fill_rate": 0.95978,
+      "stock_days": 12.043,
+      "item_fill_median": 1.0,
+      "stockout_share": 0.1751
+     },
+     {
+      "lam": 0.02,
+      "value_fill": 0.96897,
+      "fill_rate": 0.96745,
+      "stock_days": 13.871,
+      "item_fill_median": 1.0,
+      "stockout_share": 0.1238
+     }
+    ],
+    "stock_days_at": [
+     7.036,
+     10.361,
+     null
+    ]
+   }
+  },
+  "chosen": 0.25,
+  "rule": [
+   {
+    "cover": 0.75,
+    "value_fill": 0.75825,
+    "fill_rate": 0.75783,
+    "stock_days": 3.358,
+    "item_fill_median": 0.7679,
+    "stockout_share": 0.842
+   },
+   {
+    "cover": 1.0,
+    "value_fill": 0.86274,
+    "fill_rate": 0.86495,
+    "stock_days": 5.081,
+    "item_fill_median": 0.8824,
+    "stockout_share": 0.6933
+   },
+   {
+    "cover": 1.25,
+    "value_fill": 0.91923,
+    "fill_rate": 0.92168,
+    "stock_days": 7.162,
+    "item_fill_median": 1.0,
+    "stockout_share": 0.4856
+   },
+   {
+    "cover": 1.5,
+    "value_fill": 0.94661,
+    "fill_rate": 0.94817,
+    "stock_days": 9.429,
+    "item_fill_median": 1.0,
+    "stockout_share": 0.3234
+   },
+   {
+    "cover": 2.0,
+    "value_fill": 0.9672,
+    "fill_rate": 0.96821,
+    "stock_days": 14.155,
+    "item_fill_median": 1.0,
+    "stockout_share": 0.1766
+   },
+   {
+    "cover": 2.5,
+    "value_fill": 0.97497,
+    "fill_rate": 0.97591,
+    "stock_days": 19.094,
+    "item_fill_median": 1.0,
+    "stockout_share": 0.1218
+   },
+   {
+    "cover": 3.0,
+    "value_fill": 0.98032,
+    "fill_rate": 0.98072,
+    "stock_days": 24.051,
+    "item_fill_median": 1.0,
+    "stockout_share": 0.0854
+   }
+  ],
+  "same_fill": [
+   [
+    1.25,
+    0.9192,
+    7.162,
+    7.271,
+    -0.0152
+   ],
+   [
+    1.5,
+    0.9466,
+    9.429,
+    9.103,
+    0.0346
+   ],
+   [
+    2.0,
+    0.9672,
+    14.155,
+    12.135,
+    0.1427
+   ]
+  ],
+  "same_fill_without": [
+   [
+    1.0,
+    0.8627,
+    5.081,
+    5.466,
+    -0.0758
+   ],
+   [
+    1.25,
+    0.9192,
+    7.162,
+    7.631,
+    -0.0655
+   ],
+   [
+    1.5,
+    0.9466,
+    9.429,
+    9.757,
+    -0.0348
+   ]
+  ],
+  "summary": "On the earlier period, for the same service as the rule of thumb: about the same stock at 91.9% served (2% more), 3% less at 94.7% served, 14% less at 96.7% served."
+ },
+ "inventory": {
+  "planner": [
+   {
+    "target": 0.85,
+    "lam": 0.40225,
+    "value_fill": 0.83486,
+    "fill_rate": 0.84174,
+    "stock_days": 4.912,
+    "item_fill_median": 0.8571,
+    "stockout_share": 0.7118
+   },
+   {
+    "target": 0.9,
+    "lam": 0.29033,
+    "value_fill": 0.8874,
+    "fill_rate": 0.89016,
+    "stock_days": 6.187,
+    "item_fill_median": 0.9459,
+    "stockout_share": 0.5599
+   },
+   {
+    "target": 0.95,
+    "lam": 0.15644,
+    "value_fill": 0.93862,
+    "fill_rate": 0.93799,
+    "stock_days": 8.407,
+    "item_fill_median": 1.0,
+    "stockout_share": 0.3444
+   },
+   {
+    "target": 0.97,
+    "lam": 0.09647,
+    "value_fill": 0.95818,
+    "fill_rate": 0.95646,
+    "stock_days": 10.004,
+    "item_fill_median": 1.0,
+    "stockout_share": 0.2321
+   },
+   {
+    "target": 0.98,
+    "lam": 0.06436,
+    "value_fill": 0.96806,
+    "fill_rate": 0.9659,
+    "stock_days": 11.263,
+    "item_fill_median": 1.0,
+    "stockout_share": 0.1707
+   },
+   {
+    "target": 0.99,
+    "lam": 0.03099,
+    "value_fill": 0.97854,
+    "fill_rate": 0.97621,
+    "stock_days": 13.414,
+    "item_fill_median": 1.0,
+    "stockout_share": 0.1043
+   }
+  ],
+  "without_correction": [
+   {
+    "target": 0.85,
+    "lam": 0.40225,
+    "value_fill": 0.81613,
+    "fill_rate": 0.82328,
+    "stock_days": 4.738,
+    "item_fill_median": 0.8439,
+    "stockout_share": 0.7096
+   },
+   {
+    "target": 0.9,
+    "lam": 0.29033,
+    "value_fill": 0.87034,
+    "fill_rate": 0.8734,
+    "stock_days": 5.964,
+    "item_fill_median": 0.9385,
+    "stockout_share": 0.566
+   },
+   {
+    "target": 0.95,
+    "lam": 0.15644,
+    "value_fill": 0.925,
+    "fill_rate": 0.92485,
+    "stock_days": 8.102,
+    "item_fill_median": 1.0,
+    "stockout_share": 0.3602
+   },
+   {
+    "target": 0.97,
+    "lam": 0.09647,
+    "value_fill": 0.9468,
+    "fill_rate": 0.94589,
+    "stock_days": 9.642,
+    "item_fill_median": 1.0,
+    "stockout_share": 0.2514
+   },
+   {
+    "target": 0.98,
+    "lam": 0.06436,
+    "value_fill": 0.95838,
+    "fill_rate": 0.95711,
+    "stock_days": 10.865,
+    "item_fill_median": 1.0,
+    "stockout_share": 0.1893
+   },
+   {
+    "target": 0.99,
+    "lam": 0.03099,
+    "value_fill": 0.9709,
+    "fill_rate": 0.96956,
+    "stock_days": 12.948,
+    "item_fill_median": 1.0,
+    "stockout_share": 0.118
+   }
+  ],
+  "per_product": [
+   {
+    "target": 0.85,
+    "value_fill": 0.89117,
+    "fill_rate": 0.88028,
+    "stock_days": 6.382,
+    "item_fill_median": 1.0,
+    "stockout_share": 0.4568
+   },
+   {
+    "target": 0.9,
+    "value_fill": 0.92555,
+    "fill_rate": 0.91675,
+    "stock_days": 7.681,
+    "item_fill_median": 1.0,
+    "stockout_share": 0.3435
+   },
+   {
+    "target": 0.95,
+    "value_fill": 0.95729,
+    "fill_rate": 0.95109,
+    "stock_days": 9.813,
+    "item_fill_median": 1.0,
+    "stockout_share": 0.2039
+   },
+   {
+    "target": 0.99,
+    "value_fill": 0.98219,
+    "fill_rate": 0.97852,
+    "stock_days": 14.319,
+    "item_fill_median": 1.0,
+    "stockout_share": 0.0723
+   }
+  ],
+  "rule": [
+   {
+    "cover": 0.75,
+    "value_fill": 0.7647,
+    "fill_rate": 0.75877,
+    "stock_days": 3.757,
+    "item_fill_median": 0.7778,
+    "stockout_share": 0.8347
+   },
+   {
+    "cover": 1.0,
+    "value_fill": 0.86901,
+    "fill_rate": 0.86558,
+    "stock_days": 5.63,
+    "item_fill_median": 0.8947,
+    "stockout_share": 0.6811
+   },
+   {
+    "cover": 1.25,
+    "value_fill": 0.92754,
+    "fill_rate": 0.92529,
+    "stock_days": 7.86,
+    "item_fill_median": 1.0,
+    "stockout_share": 0.4678
+   },
+   {
+    "cover": 1.5,
+    "value_fill": 0.9556,
+    "fill_rate": 0.95268,
+    "stock_days": 10.284,
+    "item_fill_median": 1.0,
+    "stockout_share": 0.3015
+   },
+   {
+    "cover": 2.0,
+    "value_fill": 0.97565,
+    "fill_rate": 0.97221,
+    "stock_days": 15.34,
+    "item_fill_median": 1.0,
+    "stockout_share": 0.1559
+   },
+   {
+    "cover": 2.5,
+    "value_fill": 0.98239,
+    "fill_rate": 0.97899,
+    "stock_days": 20.622,
+    "item_fill_median": 1.0,
+    "stockout_share": 0.102
+   },
+   {
+    "cover": 3.0,
+    "value_fill": 0.98678,
+    "fill_rate": 0.98288,
+    "stock_days": 25.919,
+    "item_fill_median": 1.0,
+    "stockout_share": 0.0661
+   }
+  ],
+  "correction_weight": 0.25,
+  "lead_days": 3,
+  "review_days": 7,
+  "setup": "Every product in every store (30,490), the 28 days of the final test. Orders every 7 days, delivered 3 days later; actual sales are the demand and an empty shelf loses the sale. Stock Planner orders from the forecasts made before the 28 days, corrected with the latest weeks' sales (how much was chosen on the earlier period); the rule of thumb orders up to a multiple of 10 days of average sales (last 28 days); 'same target for every product' orders each product up to its own fill-rate target. All start from their own full level. Service is the share of demand value served; stock is valued at shelf price and shown in days of sales.",
+  "same_fill": [
+   [
+    1.0,
+    0.869,
+    5.63,
+    5.741,
+    -0.0197
+   ],
+   [
+    1.25,
+    0.9275,
+    7.86,
+    7.927,
+    -0.0085
+   ],
+   [
+    1.5,
+    0.9556,
+    10.284,
+    9.793,
+    0.0477
+   ],
+   [
+    2.0,
+    0.9757,
+    15.34,
+    12.821,
+    0.1642
+   ]
+  ],
+  "same_fill_without": [
+   [
+    1.0,
+    0.869,
+    5.63,
+    5.934,
+    -0.054
+   ],
+   [
+    1.25,
+    0.9275,
+    7.86,
+    8.281,
+    -0.0536
+   ],
+   [
+    1.5,
+    0.9556,
+    10.284,
+    10.571,
+    -0.0279
+   ]
+  ],
+  "per_product_vs": [
+   [
+    0.85,
+    0.8912,
+    6.382,
+    6.35,
+    0.005
+   ],
+   [
+    0.9,
+    0.9255,
+    7.681,
+    7.841,
+    -0.0208
+   ],
+   [
+    0.95,
+    0.9573,
+    9.813,
+    9.931,
+    -0.0121
+   ]
+  ],
+  "correction_saves": [
+   [
+    0.9,
+    0.8703,
+    5.964,
+    5.773,
+    0.032
+   ],
+   [
+    0.95,
+    0.925,
+    8.102,
+    7.817,
+    0.0352
+   ],
+   [
+    0.97,
+    0.9468,
+    9.642,
+    9.075,
+    0.0588
+   ],
+   [
+    0.98,
+    0.9584,
+    10.865,
+    10.029,
+    0.0769
+   ],
+   [
+    0.99,
+    0.9709,
+    12.948,
+    11.846,
+    0.0851
+   ]
+  ],
+  "summary": "For the same service as the rule of thumb, Stock Planner needs about the same stock at 86.9% and 92.8% served (2% and 1% more), 5% less at 95.6% served, 16% less at 97.6% served. Bringing in the latest weeks' sales (weight 0.25, chosen on the earlier period) saves 3% to 9% of the stock for the same service. Giving every product the same target instead of one shop-wide rule needs about the same stock (within 2%). Asked for 95% of the demand value, the orders served 93.9% on the final test (the target is set by simulating possible futures around the forecast; the real weeks were harder)."
+ },
+ "seconds_score": 585
+}
