@@ -569,6 +569,178 @@ with tabs[4]:
                        "their own way of ordering; the planner's forecasts for each order day use only sales before "
                        "that day.")
 
+# ---------------------------------------------------------------------------
+# 6. Trade-off
+# ---------------------------------------------------------------------------
+with tabs[5]:
+    a = ss.an if ss.shop is not None and ss.an is not None and ss.an_version == ss.version else None
+    if a is None:
+        st.info("Load a shop first (📥 Data).")
+    else:
+        fr = _frontier(a, ss.version, ss.keep_one)
+        fr = fr[(fr["target"] >= 0.75) & (fr["target"] <= 0.998)].reset_index(drop=True)
+        cur = ss.target / 100
+        y_cur = float(np.interp(cur, fr["target"], fr["stock_value"]))
+        fig = go.Figure()
+        fig.add_trace(go.Scatter(x=fr["target"] * 100, y=fr["stock_value"], mode="lines+markers",
+                                 line=dict(color=C_PLAN, width=3, shape="spline"), marker=dict(size=7),
+                                 name="Stock Planner", hovertemplate="%{x:.1f}% served: %{y:,.0f} stock<extra></extra>"))
+        fig.add_trace(go.Scatter(x=[cur * 100], y=[y_cur], mode="markers", name="your target",
+                                 marker=dict(size=16, color=C_PLAN, line=dict(color="white", width=2))))
+        if ss.rep is not None:
+            kr, kp = ss.rep["kpi_rule"], ss.rep["kpi_plan"]
+            fig.add_trace(go.Scatter(x=[kr["value_fill"] * 100], y=[kr["avg_stock_value"]], mode="markers+text",
+                                     marker=dict(size=14, color=C_RULE, symbol="diamond"), text=["your way (replay)"],
+                                     textposition="top center", name="your way, replayed"))
+            fig.add_trace(go.Scatter(x=[kp["value_fill"] * 100], y=[kp["avg_stock_value"]], mode="markers+text",
+                                     marker=dict(size=14, color=C_PLAN, symbol="diamond-open"),
+                                     text=["Stock Planner (replay)"], textposition="bottom center",
+                                     name="Stock Planner, replayed"))
+        frames = [go.Frame(data=[go.Scatter(x=fr["target"][:k + 1] * 100, y=fr["stock_value"][:k + 1])],
+                           traces=[0], name=str(k)) for k in range(len(fr))]
+        fig.frames = frames
+        fig.update_layout(updatemenus=[dict(type="buttons", showactive=False, x=1, y=1.2, xanchor="right",
+                                            buttons=[dict(label="▶ Draw the curve", method="animate",
+                                                          args=[None, dict(frame=dict(duration=260, redraw=False),
+                                                                           transition=dict(duration=200),
+                                                                           fromcurrent=False)])])])
+        layout(fig, 420, title="How much stock each service level needs (average stock value)")
+        fig.update_xaxes(title="share of demand served from the shelf (%)")
+        fig.update_yaxes(title=f"average stock value ({a.shop.currency})", rangemode="tozero")
+        st.plotly_chart(fig, width="stretch")
+        v95, v98 = (float(np.interp(x, fr["target"], fr["stock_value"])) for x in (0.95, 0.98))
+        v90 = float(np.interp(0.90, fr["target"], fr["stock_value"]))
+        m = st.columns(3)
+        m[0].metric("At your target", money(y_cur), help="Average stock value needed (steady state).")
+        m[1].metric("From 90% to 95% served", f"+{money(v95 - v90)}", delta=f"+{(v95 / v90 - 1) * 100:.0f}% stock",
+                    delta_color="off")
+        m[2].metric("From 95% to 98% served", f"+{money(v98 - v95)}", delta=f"+{(v98 / v95 - 1) * 100:.0f}% stock",
+                    delta_color="off")
+        st.caption("Each extra point of service costs more stock than the last: the curve bends upwards. From "
+                   "simulating the coming weeks over possible futures: share of the demand value served, and the "
+                   "average stock value. Diamonds: the replay of the last weeks (actual sales).")
+
+# ---------------------------------------------------------------------------
+# 7. Benchmark
+# ---------------------------------------------------------------------------
+with tabs[6]:
+    path = os.path.join(HERE, "benchmarks", "results_m5.json")
+    if not os.path.exists(path):
+        st.info("No benchmark results yet: run `python benchmarks/run_m5.py forecast` then `score`.")
+    else:
+        R = json.load(open(path))
+        acc = R["accuracy"]
+        st.markdown("#### Walmart M5: 30,490 product-store series, 28 days ahead")
+        st.caption("The M5 competition (2020, 5,558 teams): forecast 28 days of unit sales for 3,049 products in 10 "
+                   "stores. Scored with the official measure (WRMSSE over 12 levels, from the total down to each "
+                   "product in each store) and the official weights. The number of trees was chosen on the earlier "
+                   "public-leaderboard period; the final test was scored once.")
+        m = st.columns(4)
+        m[0].metric("Stock Planner (WRMSSE, lower is better)", f"{acc['engine']:.3f}")
+        m[1].metric("Best official benchmark (ES_bu)", f"{acc['benchmarks']['ES_bu']:.3f}",
+                    delta=f"{(acc['engine'] / acc['benchmarks']['ES_bu'] - 1) * 100:+.1f}%", delta_color="inverse")
+        m[2].metric("Seasonal naive", f"{acc['benchmarks']['sNaive']:.3f}")
+        m[3].metric("Winner (YJ_STU)", f"{acc['top'][0][1]:.3f}", delta=acc.get("rank_text", ""), delta_color="off")
+        names = ["Naive", "sNaive", "ARIMA_bu", "ES_bu"] + ["50th place", "10th place", "1st place"] + ["Stock Planner"]
+        vals = [acc["benchmarks"][k] for k in ("Naive", "sNaive", "ARIMA_bu", "ES_bu")] + \
+            [acc["top"][49][1], acc["top"][9][1], acc["top"][0][1], acc["engine"]]
+        cols = [C_RULE] * 4 + ["rgba(98,80,214,.55)"] * 3 + [C_PLAN]
+        fig = go.Figure(go.Bar(y=names, x=vals, orientation="h", marker=dict(color=cols, cornerradius=4),
+                               text=[f"{v:.3f}" for v in vals], textposition="outside",
+                               hovertemplate="%{y}: %{x:.3f}<extra></extra>"))
+        layout(fig, 340, title="WRMSSE on the final test period (lower is better)")
+        fig.update_xaxes(range=[0, max(vals) * 1.15])
+        st.plotly_chart(fig, width="stretch")
+        inv = R.get("inventory")
+        if inv:
+            st.markdown("#### Ordering with the forecasts: the same 30,490 shelves, 28 days")
+            st.caption(inv["setup"])
+            comps = inv.get("same_fill", [])
+            if comps:
+                fig = go.Figure()
+                xs = [f"{c[1]:.1%} served<br><sub>rule: {c[0]:g}× cover</sub>" for c in comps]
+                fig.add_trace(go.Bar(x=xs, y=[c[2] for c in comps], name="rule of thumb",
+                                     marker=dict(color=C_RULE, cornerradius=4),
+                                     text=[f"{c[2]:.1f} d" for c in comps], textposition="outside",
+                                     hovertemplate="rule of thumb: %{y:.1f} days of stock<extra></extra>"))
+                wo = {round(c[1], 4): c for c in inv.get("same_fill_without", [])}
+                if wo:
+                    fig.add_trace(go.Bar(x=xs, y=[wo[round(c[1], 4)][3] if round(c[1], 4) in wo else None
+                                                  for c in comps], name="Stock Planner without the latest weeks",
+                                         marker=dict(color="rgba(42,120,214,.4)", cornerradius=4),
+                                         hovertemplate="without the latest weeks: %{y:.1f} days<extra></extra>"))
+                fig.add_trace(go.Bar(x=xs, y=[c[3] for c in comps], name="Stock Planner",
+                                     marker=dict(color=C_PLAN, cornerradius=4),
+                                     text=["same" if abs(c[4]) < 0.03 else f"{-c[4] * 100:+.0f}%" for c in comps],
+                                     textposition="outside", textfont=dict(size=14),
+                                     hovertemplate="Stock Planner: %{y:.1f} days of stock<extra></extra>"))
+                layout(fig, 400, title="Stock needed for the same service as the rule of thumb (days of sales)",
+                       barmode="group")
+                fig.update_yaxes(title="average stock, days of sales", rangemode="tozero",
+                                 range=[0, max(c[2] for c in comps) * 1.2])
+                st.plotly_chart(fig, width="stretch")
+            st.caption(inv["summary"])
+            with st.expander("All the points: service against stock for each way of ordering"):
+                fig = go.Figure()
+                series = [("rule", "rule of thumb", C_RULE, "solid", 3, lambda r: f"{r['cover']:g}× cover"),
+                          ("per_product", "same target for every product", C_AMBER, "dot", 2, None),
+                          ("without_correction", "Stock Planner without the latest weeks", C_PLAN, "dash", 1.5, None),
+                          ("planner", "Stock Planner", C_PLAN, "solid", 3, lambda r: f"target {r['target']:.0%}")]
+                for key, name, colour, dash, width, lab in series:
+                    if key not in inv:
+                        continue
+                    df = pd.DataFrame(inv[key]).sort_values("stock_days")
+                    fig.add_trace(go.Scatter(
+                        x=df["stock_days"], y=df["value_fill"] * 100, mode="lines+markers+text" if lab else
+                        "lines+markers", line=dict(color=colour, width=width, dash=dash),
+                        marker=dict(size=8 if width > 2 else 6), name=name,
+                        text=[lab(r) for r in df.to_dict("records")] if lab else None,
+                        textposition="top left" if key == "rule" else "bottom right",
+                        hovertemplate=name + ": %{y:.1f}% served with %{x:.1f} days of stock<extra></extra>"))
+                layout(fig, 430, title="Demand value served against stock held (up and to the left is better)")
+                fig.update_xaxes(title="average stock, in days of sales")
+                fig.update_yaxes(title="demand value served (%)")
+                st.plotly_chart(fig, width="stretch")
+            cal = pd.DataFrame(inv["planner"])
+            lw = R.get("latest_weeks", {})
+            c1, c2 = st.columns(2)
+            with c1:
+                st.markdown("**Target against what the final test gave**")
+                st.dataframe(pd.DataFrame({"Target": [f"{t:.0%}" for t in cal["target"]],
+                                           "Served": [f"{v:.1%}" for v in cal["value_fill"]],
+                                           "Days of stock": [f"{v:.1f}" for v in cal["stock_days"]],
+                                           "Shelves that ran out": [f"{v:.0%}" for v in cal["stockout_share"]]}),
+                             hide_index=True, width="stretch")
+                st.caption("Shelves that ran out: products that were empty at least once in the 28 days.")
+            with c2:
+                if lw:
+                    st.markdown("**How much to trust the latest weeks** (chosen before the final test)")
+                    tab = {"Correction": [f"{float(k):.0%}" + (" ✓" if float(k) == float(lw["chosen"]) else "")
+                                          for k in lw["weights"]]}
+                    for j, f in enumerate(lw["fills"]):
+                        tab[f"{f:.0%} served"] = [f"{v['stock_days_at'][j]:.2f} d"
+                                                  if v["stock_days_at"][j] is not None else "–"
+                                                  for v in lw["weights"].values()]
+                    st.dataframe(pd.DataFrame(tab), hide_index=True, width="stretch")
+                    st.caption(f"Days of stock needed on the earlier public leaderboard period. The forecast's "
+                               f"inputs are at least 28 days old; the latest weeks' error moves it "
+                               f"{float(lw['chosen']):.0%} of the way. {lw.get('summary', '')}")
+        unc = R.get("uncertainty")
+        if unc:
+            st.markdown("#### Ranges: product-store level (level 12) of the M5 uncertainty competition")
+            names = list(unc["benchmarks"]) + ["Stock Planner"]
+            vals = list(unc["benchmarks"].values()) + [unc["engine"]]
+            fig = go.Figure(go.Bar(x=names, y=vals, marker=dict(color=[C_RULE] * len(unc["benchmarks"]) + [C_PLAN],
+                                                                 cornerradius=4),
+                                   text=[f"{v:.3f}" for v in vals], textposition="outside"))
+            layout(fig, 300, title="Scaled pinball loss over 9 quantiles, level 12 (lower is better)")
+            fig.update_yaxes(range=[0, max(vals) * 1.2])
+            st.plotly_chart(fig, width="stretch")
+            st.caption(unc["note"])
+
+# ---------------------------------------------------------------------------
+# 8. How it works
+# ---------------------------------------------------------------------------
 with tabs[7]:
     st.markdown("""
 #### The problem
@@ -616,4 +788,3 @@ with side_steps:
         st.markdown(f"{'✅' if ok else '⬜'} {lab}")
     if ss.shop is not None:
         st.caption(ss.shop.name)
-
